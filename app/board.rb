@@ -20,4 +20,8 @@ class Board
   def update_board(number, symbol)
     @cells[number] = symbol
   end
+
+  def is_valid?(number)
+    cells[number - 1] == number
+  end
 end
