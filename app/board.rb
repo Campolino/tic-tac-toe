@@ -24,4 +24,8 @@ class Board
   def is_valid?(number)
     cells[number - 1] == number
   end
+
+  def full?
+    cells.all? { |cell| cell =~ /[^0-9]/ }
+  end
 end

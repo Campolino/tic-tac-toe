@@ -60,4 +60,32 @@ describe Board do
       end
     end
   end
+
+  describe '#full?'do
+    context 'board is empty' do
+      it 'is full' do        
+        expect(board).not_to be_full
+      end      
+    end
+    
+    context 'some places are occupied' do
+      before do
+        board.instance_variable_set(:@cells, %w[x x 3 o 5 o x o o])
+      end
+
+      it 'is full' do        
+        expect(board).not_to be_full
+      end      
+    end
+
+    context 'all places are occupied' do
+      before do
+        board.instance_variable_set(:@cells, %w[x x o o x o x o o])
+      end
+
+      it 'is full' do        
+        expect(board).to be_full
+      end      
+    end
+  end
 end
