@@ -88,4 +88,52 @@ describe Board do
       end      
     end
   end
+
+  describe '#game_over?' do
+    context 'when the board is empty' do
+      it 'game is not over' do
+        expect(board).not_to be_game_over
+      end
+    end
+
+    context 'some places are occupied' do
+      before do
+        board.instance_variable_set(:@cells, %w[x x 3 o 5 o x o o])
+      end
+      
+      it 'game is not over' do
+        expect(board).not_to be_game_over
+      end
+    end
+    
+    context 'winning combo vertical' do
+      before do
+        board.instance_variable_set(:@cells, %w[1 2 x o o x 7 8 x])
+      end
+      
+      it 'game is over' do
+        expect(board).to be_game_over
+      end
+    end
+     
+    context 'winning combo is horizontal' do
+      before do
+        board.instance_variable_set(:@cells, %w[x x x o o 6 7 8 9])
+      end
+      
+      it 'game is over' do
+        expect(board).to be_game_over
+      end
+    end
+     
+    context 'winning combo is diagonal' do
+      before do
+        board.instance_variable_set(:@cells, %w[1 p x o x 6 x 8 9])
+      end
+      
+      it 'game is over' do
+        expect(board).to be_game_over
+      end
+    end
+  end
 end
